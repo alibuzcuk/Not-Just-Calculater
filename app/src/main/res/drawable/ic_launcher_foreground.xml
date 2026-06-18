@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer stylized glow shape -->
+    <path
+        android:fillColor="#FF007F"
+        android:pathData="M54,20 C35.22,20 20,35.22 20,54 C20,72.78 35.22,88 54,88 C72.78,88 88,72.78 88,54 C88,35.22 72.78,20 54,20 Z"
+        android:alpha="0.15" />
+
+    <!-- Core symbol container: Rounded square calculator shape in gold/orange gradient style -->
+    <path
+        android:fillColor="#FFA500"
+        android:pathData="M32,32 H76 V76 H32 Z" />
+
+    <!-- Key Details -->
+    <!-- Div / Multiplication / Plus / Equals signs inside the calculator layout -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,42 H58 V45 H50 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,50 H58 V53 H50 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M53,49 H55 V54 H53 Z" />
+        
+    <!-- Massive equals sign indicating calculations -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44,62 H64 V64 H44 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44,67 H64 V69 H44 Z" />
+
+    <!-- Sparkle star signifying 'Not Boring / Fun' -->
+    <path
+        android:fillColor="#00FFF0"
+        android:pathData="M78,28 L80,33 L85,34 L80,36 L78,41 L76,36 L71,34 L76,33 Z" />
+    <path
+        android:fillColor="#FF007F"
+        android:pathData="M24,68 L26,71 L30,72 L26,73 L24,76 L22,73 L18,72 L22,71 Z" />
+</vector>

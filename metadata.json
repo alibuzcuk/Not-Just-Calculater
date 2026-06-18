@@ -1,0 +1,6 @@
+{
+  "name": "NOT JUST Calculator",
+  "description": "A highly-stylized, customizable, and animated calculator featuring gorgeous interactive themes, tactile haptic sensations, and modern Material 3 visual polish.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
