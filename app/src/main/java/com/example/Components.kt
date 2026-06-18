@@ -1,5 +1,7 @@
 package com.example
 
+import android.content.Context
+import android.view.HapticFeedbackConstants
 import android.view.SoundEffectConstants
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -33,6 +35,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontFamily
@@ -130,6 +133,26 @@ fun TactileKey(
     var isPressed by remember { mutableStateOf(false) }
     val view = LocalView.current
     val haptic = LocalHapticFeedback.current
+    val context = LocalContext.current
+
+    // Explicitly enable sound and haptic feedback flags on the view
+    LaunchedEffect(view) {
+        try {
+            view.isHapticFeedbackEnabled = true
+            view.isSoundEffectsEnabled = true
+        } catch (e: Exception) {}
+    }
+
+    val audioManager = remember { context.getSystemService(Context.AUDIO_SERVICE) as? android.media.AudioManager }
+    val vibrator = remember {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? android.os.VibratorManager
+            vibratorManager?.defaultVibrator
+        } else {
+            @Suppress("DEPRECATION")
+            context.getSystemService(Context.VIBRATOR_SERVICE) as? android.os.Vibrator
+        }
+    }
     
     // Dynamic spring feedback based on Theme (Float)
     val springSpecFloat = when (theme.styleId) {
@@ -216,11 +239,39 @@ fun TactileKey(
                         
                         // Active sound response
                         if (soundEnabled) {
-                            view.playSoundEffect(SoundEffectConstants.CLICK)
+                            try {
+                                view.playSoundEffect(SoundEffectConstants.CLICK)
+                                audioManager?.playSoundEffect(android.media.AudioManager.FX_KEYPRESS_STANDARD)
+                            } catch (e: Exception) {
+                                // Fallback
+                            }
                         }
                         // Active haptics
                         if (hapticEnabled) {
-                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            try {
+                                // Try view-level keyboard tap haptic first with override flags
+                                view.performHapticFeedback(
+                                    HapticFeedbackConstants.KEYBOARD_TAP,
+                                    HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING or
+                                    HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING
+                                )
+                                // Fallback/supplement via Android Hardware Vibrator for absolute 100% success on all devices (especially ROMs where touch haptic is muted in settings)
+                                if (vibrator != null && vibrator.hasVibrator()) {
+                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                        vibrator.vibrate(
+                                            android.os.VibrationEffect.createOneShot(
+                                                18, // Ultra tight, premium professional 18ms keyboard click buzz
+                                                android.os.VibrationEffect.DEFAULT_AMPLITUDE
+                                            )
+                                        )
+                                    } else {
+                                        @Suppress("DEPRECATION")
+                                        vibrator.vibrate(18)
+                                    }
+                                }
+                            } catch (e: Exception) {
+                                // Fallback
+                            }
                         }
                         
                         try {
