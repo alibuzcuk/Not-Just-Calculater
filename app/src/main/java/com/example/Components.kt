@@ -250,6 +250,7 @@ fun TactileKey(
                         if (hapticEnabled) {
                             try {
                                 // Try view-level keyboard tap haptic first with override flags
+                                @Suppress("DEPRECATION")
                                 view.performHapticFeedback(
                                     HapticFeedbackConstants.KEYBOARD_TAP,
                                     HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING or
