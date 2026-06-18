@@ -1,6 +1,6 @@
 # 📱 NOT JUST CALC
 
-![Not Just Calc Banner](https://raw.githubusercontent.com/alibuzcuk/Not-Just-Calculater/refs/heads/main/NOT%20JUST%20CALC_20260618_171822_0000.png?token=GHSAT0AAAAAAD6ZGZCQPVJVUBAH63MRJRB62RT74KA)
+![Not Just Calc Banner]https://raw.githubusercontent.com/alibuzcuk/Not-Just-Calculater/refs/heads/main/NOT%20JUST%20CALC_20260618_171822_0000.png)
 **Not Just Calc**, sıradan ve sıkıcı hesap makinelerinden sıkılanlar için geliştirilmiş, tamamen kişiselleştirilebilir ve retro esintiler taşıyan modern bir hesap makinesi uygulamasıdır. *Nutshell* mantığından esinlenerek, sadece bir hesap makinesi olmanın ötesinde bir kullanım deneyimi sunar.
 
 ## ✨ Özellikler
