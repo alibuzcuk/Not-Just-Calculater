@@ -20,4 +20,5 @@ Projenin stabil sürümleri yakında burada ve çeşitli platformlarda yer alaca
 ### 💬 Destek ve Geri Bildirim
 Uygulamayı geliştirmeme yardımcı olmak veya fikirlerinizi paylaşmak için bir **Issue** açabilir ya da projeye **Star (Yıldız)** vererek destek olabilirsiniz!
 
-![README-en](https://github.com/alibuzcuk/Not-Just-Calculater/blob/main/README.md)
+🌐 [Click here for English README](https://github.com/alibuzcuk/Not-Just-Calculater/blob/main/README-en.md)
+)
